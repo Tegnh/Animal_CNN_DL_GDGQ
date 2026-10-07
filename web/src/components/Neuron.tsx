@@ -136,7 +136,7 @@ export function Neuron() {
               key={i}
               id={`neuron-x${i}`}
               symbol={`x${SUBSCRIPT[i]}`}
-              name={`الدخل ${i + 1}`}
+              name={`المدخل ${i + 1}`}
               value={x}
               min={0}
               max={1}

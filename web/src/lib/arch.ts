@@ -24,7 +24,7 @@ export function customCnnArchitecture(card: ModelCard): Architecture {
   const classes = card.classes.length;
 
   const blocks: ArchBlock[] = [
-    { name: 'الدخل', detail: 'صورة ملوّنة RGB', shape: times(height, width, channels), params: 0 },
+    { name: 'المدخل', detail: 'صورة ملوّنة RGB', shape: times(height, width, channels), params: 0 },
     {
       name: 'تصغير وتحجيم',
       detail: 'Resize ثم قسمة القيم على 255',
@@ -91,7 +91,7 @@ export function efficientNetArchitecture(card: ModelCard): TransferArchitecture 
   const backboneParams = card.models.efficientnet_b0.parameters - headParams;
 
   const blocks: ArchBlock[] = [
-    { name: 'الدخل', detail: 'صورة ملوّنة RGB', shape: times(height, width, channels), params: 0 },
+    { name: 'المدخل', detail: 'صورة ملوّنة RGB', shape: times(height, width, channels), params: 0 },
     ...EFFICIENTNET_STAGES.map((s) => ({
       name: s.name,
       detail: s.detail,
