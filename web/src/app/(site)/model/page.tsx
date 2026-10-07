@@ -42,7 +42,7 @@ function NetworkDiagram() {
       className="chart"
       viewBox="0 0 360 250"
       role="img"
-      aria-label="رسم مبسّط لشبكة عصبية: طبقة دخل على اليمين، ثلاث طبقات مخفية، ثم طبقة مخرج على اليسار. كل عصبون متصل بكل عصبونات الطبقة التالية."
+      aria-label="رسم مبسّط لشبكة عصبية: طبقة مدخل على اليمين، ثلاث طبقات مخفية، ثم طبقة مخرج على اليسار. كل عصبون متصل بكل عصبونات الطبقة التالية."
     >
       {layers.slice(0, -1).map((layer, l) =>
         Array.from({ length: layer.nodes }, (_, i) =>
@@ -73,7 +73,7 @@ function NetworkDiagram() {
       )}
       <path d="M270 216V222H90V216" fill="none" style={{ stroke: 'var(--rule-strong)' }} />
       <text className="chart__ar" x={330} y={242} textAnchor="middle">
-        الدخل
+        المدخل
       </text>
       <text className="chart__ar" x={180} y={242} textAnchor="middle">
         طبقات مخفية
@@ -230,7 +230,7 @@ export default function ModelPage() {
       <Section num="01" name="العصبون" title="أصغر قطعة: عصبون واحد">
         <div className="prose reveal">
           <p>
-            العصبون عملية حسابية بسيطة. يضرب كل دخل في <strong>وزن</strong>، يجمع النواتج، يضيف رقمًا
+            العصبون عملية حسابية بسيطة. يضرب كل مدخل في <strong>وزن</strong>، يجمع النواتج، يضيف رقمًا
             ثابتًا اسمه <strong>الانحياز</strong>، ثم يمرّر المجموع على دالة <L>ReLU</L> التي تحوّل أي رقم
             سالب إلى صفر.
           </p>
@@ -250,7 +250,7 @@ export default function ModelPage() {
           </figure>
           <ol className={styles.mapping}>
             <li className="reveal">
-              <span className="label">الدخل</span>
+              <span className="label">المدخل</span>
               <p className={`num ltr ${styles.mappingFigure}`}>
                 {width}×{height}×{channels} = {int(width * height * channels)}
               </p>

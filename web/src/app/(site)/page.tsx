@@ -66,7 +66,7 @@ export default function HomePage() {
               <dd className="num">{Object.keys(card.models).length}</dd>
             </div>
             <div>
-              <dt className="label">حجم الدخل</dt>
+              <dt className="label">حجم المدخل</dt>
               <dd className="num ltr">
                 {width}×{height}
               </dd>
