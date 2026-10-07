@@ -1,0 +1,316 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  overflow: clip;
+  padding-block: clamp(2rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem);
+}
+
+/* The depth plate bleeds off the end edge; on phones it sits above the type. */
+.plate {
+  inline-size: 118%;
+  aspect-ratio: 1.25;
+  margin-inline: -9%;
+  margin-block: -10% 0.5rem;
+}
+
+.plate svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.heroInner {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(6rem, 30vw, 13rem);
+  line-height: 1.25;
+  margin-block: -0.12em -0.1em;
+}
+
+.subtitle {
+  font-size: clamp(1.5rem, 4.2vw, 2.75rem);
+  line-height: 1.5;
+  max-inline-size: 14em;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 2rem;
+  inline-size: 100%;
+  max-inline-size: 34rem;
+  margin-block-start: 1.5rem;
+  padding-block-start: 1.25rem;
+  border-block-start: 1px solid var(--rule-strong);
+}
+
+.facts dd {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: start;
+}
+
+@media (min-width: 560px) {
+  .facts {
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero {
+    min-block-size: min(92vh, 900px);
+    min-block-size: min(92svh, 900px);
+    display: grid;
+    align-items: center;
+  }
+
+  .plate {
+    position: absolute;
+    z-index: -1;
+    inset-block: -6% -10%;
+    inset-inline-end: -12%;
+    inline-size: 68%;
+    aspect-ratio: auto;
+    margin: 0;
+  }
+
+  .heroInner {
+    gap: 1.5rem;
+  }
+
+  .heroInner > * {
+    max-inline-size: 50%;
+  }
+}
+
+/* 01 */
+.pair {
+  display: grid;
+  gap: 0;
+  border-block-start: 1px solid var(--rule-strong);
+}
+
+.pair li {
+  padding-block: 1.5rem;
+  border-block-end: 1px solid var(--rule);
+}
+
+.pair h3 {
+  margin-block: 0.25rem 0.5rem;
+}
+
+@media (min-width: 720px) {
+  .pair {
+    grid-template-columns: 5fr 7fr;
+  }
+
+  .pair li {
+    padding-inline-end: 2.5rem;
+  }
+
+  .pair li + li {
+    padding-inline: 2.5rem 0;
+    border-inline-start: 1px solid var(--rule);
+  }
+}
+
+/* 02 */
+.steps {
+  display: grid;
+  border-block-start: 1px solid var(--rule-strong);
+}
+
+.steps li {
+  display: grid;
+  grid-template-columns: clamp(4rem, 14vw, 9rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1.25rem;
+  border-block-end: 1px solid var(--rule);
+}
+
+.steps h3 {
+  margin-block-end: 0.25rem;
+}
+
+.steps p {
+  max-inline-size: 34em;
+}
+
+.stepNum {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(4rem, 13vw, 8.5rem);
+  line-height: 1;
+  color: var(--leaf);
+}
+
+/* Successive steps step inward, like going down a level. */
+@media (min-width: 900px) {
+  .steps li:nth-child(2) {
+    padding-inline-start: 8%;
+  }
+
+  .steps li:nth-child(2) .stepNum {
+    color: var(--fern);
+  }
+
+  .steps li:nth-child(3) {
+    padding-inline-start: 16%;
+  }
+
+  .steps li:nth-child(3) .stepNum {
+    color: var(--moss);
+  }
+}
+
+/* 03 */
+.index {
+  columns: 2;
+  column-gap: var(--gutter);
+  border-block-start: 1px solid var(--rule-strong);
+}
+
+.index li {
+  break-inside: avoid;
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr);
+  column-gap: 0.5rem;
+  align-items: baseline;
+  padding-block: 0.6rem;
+  border-block-end: 1px solid var(--rule);
+}
+
+.index li > :last-child {
+  grid-column: 2;
+  text-align: end;
+  justify-self: start;
+}
+
+.indexAr {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .index {
+    columns: 3;
+  }
+}
+
+@media (min-width: 1100px) {
+  .index {
+    columns: 4;
+  }
+}
+
+/* 04 */
+.bandArt {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  color: var(--moss);
+  opacity: 0.55;
+  margin: 0 !important;
+}
+
+.bandArt svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.figures {
+  display: grid;
+  gap: 0;
+  border-block-start: 1px solid var(--rule-strong);
+}
+
+.figures > div {
+  display: grid;
+  gap: 0.25rem;
+  padding-block: 1.25rem;
+  border-block-end: 1px solid var(--rule);
+}
+
+.figures dt {
+  color: var(--text-soft);
+  font-size: 1rem;
+  max-inline-size: 22em;
+}
+
+.figure {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3.6rem, 17vw, 8rem);
+  line-height: 1.1;
+  direction: ltr;
+  text-align: end;
+}
+
+.figures > div:last-child .figure {
+  color: var(--leaf);
+}
+
+@media (min-width: 900px) {
+  .figures > div {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 2rem;
+  }
+
+  .figure {
+    font-size: clamp(5rem, 10vw, 9rem);
+  }
+
+  .figures > div:nth-child(2) .figure,
+  .figures > div:nth-child(3) .figure {
+    font-size: clamp(3.5rem, 6.5vw, 6rem);
+  }
+}
+
+/* CTA */
+.cta {
+  padding-block: var(--step);
+  border-block-start: 1px solid var(--rule);
+}
+
+.ctaLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block: 0.5rem 1rem;
+  padding-block: 0.5rem;
+  border-block-end: 2px solid var(--ink);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(3rem, 13vw, 9rem);
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ctaLink:hover {
+  color: var(--moss);
+}
+
+.ctaArrow {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.6em;
+  transition: translate 0.25s;
+}
+
+.ctaLink:hover .ctaArrow {
+  translate: -0.25em 0;
+}

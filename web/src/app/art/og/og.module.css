@@ -1,0 +1,74 @@
+.plate {
+  position: relative;
+  inline-size: 1200px;
+  block-size: 630px;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.terrain {
+  position: absolute;
+  inset-block-start: -90px;
+  inset-inline-end: -110px;
+  inline-size: 800px;
+  block-size: 800px;
+}
+
+/* Survey ticks along the top hairline. */
+.ticks {
+  position: absolute;
+  inset-inline: 56px;
+  inset-block-start: 92px;
+  block-size: 9px;
+  border-block-start: 1px solid var(--ink);
+  background: repeating-linear-gradient(to left, var(--ink) 0 1px, transparent 1px 34px);
+  opacity: 0.55;
+}
+
+.meta {
+  position: absolute;
+  inset-inline: 56px;
+  display: flex;
+  justify-content: space-between;
+  direction: ltr;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  color: var(--forest);
+}
+
+.top {
+  inset-block-start: 52px;
+  justify-content: flex-end;
+}
+
+.bottom {
+  inset-block-end: 48px;
+}
+
+.bottom span:first-child {
+  color: var(--paper);
+}
+
+.name {
+  position: absolute;
+  inset-inline-start: 56px;
+  inset-block-start: 128px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 250px;
+  line-height: 1.25;
+}
+
+.subtitle {
+  position: absolute;
+  inset-inline-start: 60px;
+  inset-block-start: 452px;
+  max-inline-size: 520px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1.6;
+  color: var(--forest);
+}

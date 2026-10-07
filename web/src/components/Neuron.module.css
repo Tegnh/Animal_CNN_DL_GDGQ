@@ -1,0 +1,163 @@
+.neuron {
+  display: grid;
+  gap: 1.5rem var(--gutter);
+  border-block: 1px solid var(--rule-strong);
+  padding-block: 1.5rem;
+}
+
+.stage {
+  max-inline-size: 560px;
+  inline-size: 100%;
+  justify-self: center;
+}
+
+.value {
+  font-size: 11px !important;
+  font-weight: 500;
+  fill: var(--ink) !important;
+}
+
+.controls {
+  display: grid;
+  gap: 1.25rem var(--gutter);
+}
+
+.controls fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-inline-size: 0;
+}
+
+.controls legend {
+  padding: 0;
+  margin-block-end: 0.25rem;
+}
+
+.slider {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) 3.4rem;
+  align-items: center;
+  gap: 0.5rem;
+  min-block-size: 44px;
+}
+
+.slider output {
+  text-align: end;
+  font-size: 0.9rem;
+}
+
+.slider input {
+  appearance: none;
+  -webkit-appearance: none;
+  inline-size: 100%;
+  block-size: 44px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slider input::-webkit-slider-runnable-track {
+  block-size: 2px;
+  background: var(--rule-strong);
+}
+
+.slider input::-moz-range-track {
+  block-size: 2px;
+  background: var(--rule-strong);
+}
+
+.slider input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  inline-size: 14px;
+  block-size: 26px;
+  margin-block-start: -12px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--forest);
+}
+
+.slider input::-moz-range-thumb {
+  inline-size: 14px;
+  block-size: 26px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--forest);
+}
+
+.slider input:hover::-webkit-slider-thumb {
+  background: var(--ink);
+}
+
+.readout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background: var(--mist);
+}
+
+.math p + p {
+  margin-block-start: 0.15rem;
+}
+
+.math :global(.num) {
+  font-size: 0.82rem;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+  text-align: end;
+}
+
+.math :global(.label) {
+  margin-block-start: 0.6rem;
+  color: var(--forest);
+}
+
+.math :global(.label):first-child {
+  margin-block-start: 0;
+}
+
+.math :global(.small) {
+  margin-block-start: 0.6rem;
+}
+
+.math strong {
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.relu {
+  max-inline-size: 180px;
+  justify-self: center;
+}
+
+@media (min-width: 620px) {
+  .controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .readout {
+    grid-template-columns: minmax(0, 1fr) 180px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .math :global(.num) {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .neuron {
+    grid-template-columns: 6fr 5fr;
+    align-items: center;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .readout {
+    grid-column: 1 / -1;
+  }
+}

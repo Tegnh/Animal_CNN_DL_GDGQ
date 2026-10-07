@@ -1,0 +1,294 @@
+{
+  "task": "Animal image classification (24 classes)",
+  "classes": [
+    "antelope",
+    "bear",
+    "bison",
+    "butterfly",
+    "cat",
+    "chimpanzee",
+    "cow",
+    "crow",
+    "deer",
+    "dog",
+    "dolphin",
+    "donkey",
+    "duck",
+    "eagle",
+    "elephant",
+    "flamingo",
+    "fox",
+    "goat",
+    "hare",
+    "horse",
+    "lion",
+    "penguin",
+    "sheep",
+    "zebra"
+  ],
+  "input": {
+    "shape": [
+      224,
+      224,
+      3
+    ],
+    "values": "RGB, raw pixel values 0-255, float32",
+    "preprocessing": "fix EXIF rotation -> RGB -> resize to 224x224 (bilinear, no crop)"
+  },
+  "data": {
+    "images_per_split": {
+      "train": 1196,
+      "test": 258,
+      "val": 257
+    },
+    "images_per_class": {
+      "antelope": {
+        "train": 36,
+        "val": 8,
+        "test": 8
+      },
+      "bear": {
+        "train": 34,
+        "val": 7,
+        "test": 7
+      },
+      "bison": {
+        "train": 34,
+        "val": 8,
+        "test": 7
+      },
+      "butterfly": {
+        "train": 38,
+        "val": 8,
+        "test": 8
+      },
+      "cat": {
+        "train": 104,
+        "val": 22,
+        "test": 23
+      },
+      "chimpanzee": {
+        "train": 35,
+        "val": 7,
+        "test": 8
+      },
+      "cow": {
+        "train": 39,
+        "val": 8,
+        "test": 8
+      },
+      "crow": {
+        "train": 34,
+        "val": 7,
+        "test": 8
+      },
+      "deer": {
+        "train": 36,
+        "val": 8,
+        "test": 8
+      },
+      "dog": {
+        "train": 106,
+        "val": 22,
+        "test": 23
+      },
+      "dolphin": {
+        "train": 36,
+        "val": 8,
+        "test": 7
+      },
+      "donkey": {
+        "train": 34,
+        "val": 8,
+        "test": 7
+      },
+      "duck": {
+        "train": 36,
+        "val": 8,
+        "test": 8
+      },
+      "eagle": {
+        "train": 34,
+        "val": 8,
+        "test": 7
+      },
+      "elephant": {
+        "train": 105,
+        "val": 22,
+        "test": 23
+      },
+      "flamingo": {
+        "train": 29,
+        "val": 7,
+        "test": 6
+      },
+      "fox": {
+        "train": 36,
+        "val": 8,
+        "test": 8
+      },
+      "goat": {
+        "train": 36,
+        "val": 8,
+        "test": 8
+      },
+      "hare": {
+        "train": 36,
+        "val": 8,
+        "test": 8
+      },
+      "horse": {
+        "train": 104,
+        "val": 22,
+        "test": 22
+      },
+      "lion": {
+        "train": 107,
+        "val": 23,
+        "test": 23
+      },
+      "penguin": {
+        "train": 35,
+        "val": 7,
+        "test": 8
+      },
+      "sheep": {
+        "train": 36,
+        "val": 8,
+        "test": 7
+      },
+      "zebra": {
+        "train": 36,
+        "val": 7,
+        "test": 8
+      }
+    },
+    "sources": {
+      "d1": "kaggle.com/datasets/antobenedetti/animals",
+      "d3": "kaggle.com/datasets/iamsouravbanerjee/animal-image-dataset-90-different-animals"
+    }
+  },
+  "training": {
+    "seed": 42,
+    "batch_size": 32,
+    "label_smoothing": 0.1,
+    "class_weights": "inverse class frequency",
+    "optimizer": "Adam"
+  },
+  "models": {
+    "custom_cnn": {
+      "file": "custom_cnn.keras",
+      "parameters": 1181304,
+      "settings": {
+        "inner_size": 128,
+        "filters": [
+          32,
+          64,
+          128,
+          256
+        ],
+        "dropout": 0.5,
+        "l2": 0.0001,
+        "lr": 0.001,
+        "epochs": 80,
+        "patience": 15,
+        "aug": {
+          "rotation_deg": 20,
+          "zoom_in": 0.35,
+          "zoom_out": 0.1,
+          "translate": 0.15,
+          "contrast": 0.25,
+          "brightness": 0.2
+        }
+      },
+      "epochs_run": 71,
+      "train_minutes": 5.4,
+      "unknown_threshold": 0.39,
+      "test_results": {
+        "accuracy": 0.4225,
+        "top3_accuracy": 0.6589,
+        "macro_f1": 0.4384,
+        "accuracy_d1": 0.3214,
+        "accuracy_d3": 0.4713,
+        "unknown_threshold": 0.39,
+        "unknown_rejected": 0.7677,
+        "test_accepted": 0.3178,
+        "accuracy_when_accepted": 0.6463
+      },
+      "web": {
+        "file": "custom_cnn.onnx",
+        "size_mb": 4.72,
+        "input_name": "image",
+        "input_shape": [
+          null,
+          224,
+          224,
+          3
+        ],
+        "output_name": "Identity:0",
+        "max_abs_diff": 1.0132789611816406e-06,
+        "top1_agreement": 1.0
+      }
+    },
+    "efficientnet_b0": {
+      "file": "efficientnet_b0.keras",
+      "parameters": 4080315,
+      "settings": {
+        "dropout": 0.3,
+        "head_lr": 0.001,
+        "head_epochs": 15,
+        "head_patience": 5,
+        "ft_lr": 1e-05,
+        "ft_epochs": 20,
+        "ft_patience": 6,
+        "unfreeze_last": 30,
+        "aug": {
+          "rotation_deg": 15,
+          "zoom_in": 0.3,
+          "zoom_out": 0.1,
+          "translate": 0.1,
+          "contrast": 0.2,
+          "brightness": 0.15
+        }
+      },
+      "epochs_run": 35,
+      "train_minutes": 2.9,
+      "unknown_threshold": 0.55,
+      "test_results": {
+        "accuracy": 0.9535,
+        "top3_accuracy": 0.9884,
+        "macro_f1": 0.9421,
+        "accuracy_d1": 0.9881,
+        "accuracy_d3": 0.9368,
+        "unknown_threshold": 0.55,
+        "unknown_rejected": 0.8232,
+        "test_accepted": 0.9186,
+        "accuracy_when_accepted": 0.9873
+      },
+      "web": {
+        "file": "efficientnet_b0.onnx",
+        "size_mb": 16.26,
+        "input_name": "image",
+        "input_shape": [
+          null,
+          224,
+          224,
+          3
+        ],
+        "output_name": "output_0",
+        "max_abs_diff": 1.7881393432617188e-06,
+        "top1_agreement": 1.0
+      }
+    }
+  },
+  "versions": {
+    "tensorflow": "2.21.0",
+    "keras": "3.13.2"
+  },
+  "created": "2026-10-07 14:01",
+  "web": {
+    "runtime": "onnxruntime-web (in the browser)",
+    "opset": 17,
+    "input_layout": "NHWC float32 [1, 224, 224, 3], pixel values 0-255"
+  }
+}

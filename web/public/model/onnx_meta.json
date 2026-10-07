@@ -1,0 +1,36 @@
+{
+  "custom_cnn": {
+    "input_name": "image",
+    "input_shape": [
+      null,
+      224,
+      224,
+      3
+    ],
+    "output_name": "Identity:0",
+    "max_abs_diff": 1.0132789611816406e-06,
+    "top1_agreement": 1.0,
+    "cpu_ms_per_image": 23.20025500003453,
+    "file": "custom_cnn.onnx",
+    "method": "2: tf2onnx from_function",
+    "opset": 17,
+    "size_mb": 4.72
+  },
+  "efficientnet_b0": {
+    "input_name": "image",
+    "input_shape": [
+      null,
+      224,
+      224,
+      3
+    ],
+    "output_name": "output_0",
+    "max_abs_diff": 1.7881393432617188e-06,
+    "top1_agreement": 1.0,
+    "cpu_ms_per_image": 28.961418000051253,
+    "file": "efficientnet_b0.onnx",
+    "method": "3: SavedModel + tf2onnx CLI",
+    "opset": 17,
+    "size_mb": 16.26
+  }
+}
