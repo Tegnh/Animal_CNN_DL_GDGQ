@@ -64,7 +64,7 @@ export function Neuron() {
           className="chart"
           viewBox="0 0 360 230"
           role="img"
-          aria-label="رسم عصبون واحد: ثلاثة مداخل على اليمين، ثم المجموع الموزون، ثم دالة ReLU، ثم الخرج على اليسار"
+          aria-label="رسم عصبون واحد: ثلاثة مداخل على اليمين، ثم المجموع الموزون، ثم دالة ReLU، ثم المخرج على اليسار"
         >
           {inputs.map((x, i) => (
             <g key={i}>
@@ -123,7 +123,7 @@ export function Neuron() {
             المجموع الموزون
           </text>
           <text className="chart__ar" x={40} y={226} textAnchor="middle">
-            الخرج
+            المخرج
           </text>
         </svg>
       </figure>
@@ -174,7 +174,7 @@ export function Neuron() {
             a = max(0, z) = <strong>{fmt(a)}</strong>
           </p>
           <p className="small">
-            {z > 0 ? 'المجموع موجب، فيمرّ كما هو.' : 'المجموع ليس موجبًا، فيصير الخرج صفرًا: العصبون «صامت».'}
+            {z > 0 ? 'المجموع موجب، فيمرّ كما هو.' : 'المجموع ليس موجبًا، فيصير المخرج صفرًا: العصبون «صامت».'}
           </p>
         </div>
         <svg className={`chart ${styles.relu}`} viewBox="0 0 120 80" role="img" aria-label="منحنى دالة ReLU مع موضع القيمة الحالية">

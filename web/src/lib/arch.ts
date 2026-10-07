@@ -53,7 +53,7 @@ export function customCnnArchitecture(card: ModelCard): Architecture {
     { name: 'تجميع', detail: 'Global Average Pooling', shape: String(previous), params: 0 },
     { name: 'إسقاط', detail: `Dropout ${dropout}`, shape: String(previous), params: 0 },
     {
-      name: 'الخرج',
+      name: 'المخرج',
       detail: `Dense ${classes} + softmax`,
       shape: String(classes),
       params: previous * classes + classes,
@@ -67,13 +67,13 @@ export function customCnnArchitecture(card: ModelCard): Architecture {
 // EfficientNetB0 stages for a 224×224 input (Tan & Le, 2019).
 const EFFICIENTNET_STAGES: { name: string; detail: string; shape: [number, number, number] }[] = [
   { name: 'الجذع', detail: 'Conv 3×3 بخطوة 2', shape: [112, 112, 32] },
-  { name: 'المرحلة 1', detail: 'MBConv1 3×3 × 1', shape: [112, 112, 16] },
-  { name: 'المرحلة 2', detail: 'MBConv6 3×3 × 2', shape: [56, 56, 24] },
-  { name: 'المرحلة 3', detail: 'MBConv6 5×5 × 2', shape: [28, 28, 40] },
-  { name: 'المرحلة 4', detail: 'MBConv6 3×3 × 3', shape: [14, 14, 80] },
-  { name: 'المرحلة 5', detail: 'MBConv6 5×5 × 3', shape: [14, 14, 112] },
-  { name: 'المرحلة 6', detail: 'MBConv6 5×5 × 4', shape: [7, 7, 192] },
-  { name: 'المرحلة 7', detail: 'MBConv6 3×3 × 1', shape: [7, 7, 320] },
+  { name: 'الكتلة 1', detail: 'MBConv1 3×3 × 1', shape: [112, 112, 16] },
+  { name: 'الكتلة 2', detail: 'MBConv6 3×3 × 2', shape: [56, 56, 24] },
+  { name: 'الكتلة 3', detail: 'MBConv6 5×5 × 2', shape: [28, 28, 40] },
+  { name: 'الكتلة 4', detail: 'MBConv6 3×3 × 3', shape: [14, 14, 80] },
+  { name: 'الكتلة 5', detail: 'MBConv6 5×5 × 3', shape: [14, 14, 112] },
+  { name: 'الكتلة 6', detail: 'MBConv6 5×5 × 4', shape: [7, 7, 192] },
+  { name: 'الكتلة 7', detail: 'MBConv6 3×3 × 1', shape: [7, 7, 320] },
   { name: 'القمة', detail: 'Conv 1×1', shape: [7, 7, 1280] },
 ];
 
@@ -105,7 +105,7 @@ export function efficientNetArchitecture(card: ModelCard): TransferArchitecture 
       shape: String(features),
       params: 0,
     },
-    { name: 'الخرج', detail: `Dense ${classes} + softmax`, shape: String(classes), params: headParams },
+    { name: 'المخرج', detail: `Dense ${classes} + softmax`, shape: String(classes), params: headParams },
   ];
   return { blocks, backboneParams, headParams };
 }

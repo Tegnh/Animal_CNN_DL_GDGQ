@@ -42,7 +42,7 @@ function NetworkDiagram() {
       className="chart"
       viewBox="0 0 360 250"
       role="img"
-      aria-label="رسم مبسّط لشبكة عصبية: طبقة دخل على اليمين، ثلاث طبقات مخفية، ثم طبقة خرج على اليسار. كل عصبون متصل بكل عصبونات الطبقة التالية."
+      aria-label="رسم مبسّط لشبكة عصبية: طبقة دخل على اليمين، ثلاث طبقات مخفية، ثم طبقة مخرج على اليسار. كل عصبون متصل بكل عصبونات الطبقة التالية."
     >
       {layers.slice(0, -1).map((layer, l) =>
         Array.from({ length: layer.nodes }, (_, i) =>
@@ -79,7 +79,7 @@ function NetworkDiagram() {
         طبقات مخفية
       </text>
       <text className="chart__ar" x={30} y={242} textAnchor="middle">
-        الخرج
+        المخرج
       </text>
     </svg>
   );
@@ -172,7 +172,7 @@ export default function ModelPage() {
     { label: <L>label smoothing</L>, a: card.training.label_smoothing, b: card.training.label_smoothing },
     { label: 'أوزان الأصناف', a: card.training.class_weights, b: card.training.class_weights },
     { label: 'البذرة العشوائية', a: card.training.seed, b: card.training.seed },
-    { group: 'المرحلة 1', label: 'ما يُدرَّب', a: 'الشبكة كلها', b: 'طبقة الخرج فقط، والباقي مجمَّد' },
+    { group: 'المرحلة 1', label: 'ما يُدرَّب', a: 'الشبكة كلها', b: 'طبقة المخرج فقط، والباقي مجمَّد' },
     { label: 'معدّل التعلّم', a: plain(a.settings.lr), b: plain(b.settings.head_lr) },
     { label: 'أقصى عدد للدورات', a: a.settings.epochs, b: b.settings.head_epochs },
     { label: 'صبر التوقف المبكر', a: a.settings.patience, b: b.settings.head_patience },
@@ -180,7 +180,7 @@ export default function ModelPage() {
       group: 'المرحلة 2 · الضبط الدقيق',
       label: 'ما يُدرَّب',
       a: 'لا توجد',
-      b: `آخر ${b.settings.unfreeze_last} طبقة + طبقة الخرج`,
+      b: `آخر ${b.settings.unfreeze_last} طبقة + طبقة المخرج`,
     },
     { label: 'معدّل التعلّم', a: '', b: plain(b.settings.ft_lr) },
     { label: 'أقصى عدد للدورات', a: '', b: b.settings.ft_epochs },
@@ -234,7 +234,7 @@ export default function ModelPage() {
             ثابتًا اسمه <strong>الانحياز</strong>، ثم يمرّر المجموع على دالة <L>ReLU</L> التي تحوّل أي رقم
             سالب إلى صفر.
           </p>
-          <p>حرّك المنزلقات وراقب كيف يتغيّر الخرج. التدريب ليس إلا بحثًا آليًا عن أوزان جيدة.</p>
+          <p>حرّك المنزلقات وراقب كيف يتغيّر المخرج. التدريب ليس إلا بحثًا آليًا عن أوزان جيدة.</p>
         </div>
         <Neuron />
       </Section>
@@ -262,12 +262,12 @@ export default function ModelPage() {
               <span className="label">الطبقات المخفية</span>
               <p className={styles.mappingFigure}>حواف ← أنسجة ← أجزاء</p>
               <p className="small">
-                طبقات التفاف (<L>convolution</L>). الأولى تلتقط الحواف والألوان، التي بعدها تلتقط الأنسجة
+                طبقات التفافية (<L>convolution</L>). الأولى تلتقط الحواف والألوان، التي بعدها تلتقط الأنسجة
                 كالفرو والريش، والأعمق تلتقط أجزاء الحيوان كالأذن والمنقار.
               </p>
             </li>
             <li className="reveal">
-              <span className="label">الخرج</span>
+              <span className="label">المخرج</span>
               <p className={`num ltr ${styles.mappingFigure}`}>{labels.length}</p>
               <p className="small">
                 عصبون لكل حيوان. دالة <L>softmax</L> تحوّل أرقامها إلى نسب مجموعها <span className="num">100%</span>، وأعلاها هو الجواب.
@@ -293,7 +293,7 @@ export default function ModelPage() {
             <p className="small">
               {archA.paramsVerified
                 ? 'أعداد المعاملات محسوبة من إعدادات النموذج، ومجموعها يطابق العدد الكلّي تمامًا.'
-                : 'تعذّر التحقق من أعداد المعاملات لكل كتلة، فعُرض العدد الكلّي فقط.'}
+                : 'تعذّر التحقّق من أعداد المعاملات لكل كتلة، فعُرض العدد الكلّي فقط.'}
             </p>
           </article>
           <article className="reveal">
@@ -305,7 +305,7 @@ export default function ModelPage() {
             <ArchList blocks={archB.blocks} showParams />
             <p className="small">
               الجسم المدرَّب مسبقًا على <L>ImageNet</L> فيه <span className="num">{int(archB.backboneParams)}</span>{' '}
-              معاملًا. أضفتُ فوقه طبقة خرج واحدة فيها <span className="num">{int(archB.headParams)}</span> معاملًا
+              معاملًا. أضفتُ فوقه طبقة مخرج واحدة فيها <span className="num">{int(archB.headParams)}</span> معاملًا
               فقط.
             </p>
           </article>
@@ -316,7 +316,7 @@ export default function ModelPage() {
         <div className="prose reveal">
           <p>
             النموذج A يتدرّب مرة واحدة من أرقام عشوائية. النموذج B يتدرّب على <strong>مرحلتين</strong>: أولًا
-            طبقة الخرج الجديدة وحدها والجسم مجمَّد، ثم يُفكّ تجميد آخر{' '}
+            طبقة المخرج الجديدة وحدها والجسم مجمَّد، ثم يُفكّ تجميد آخر{' '}
             <span className="num">{b.settings.unfreeze_last}</span> طبقة وتُضبط بمعدّل تعلّم صغير جدًا حتى
             لا يضيع ما تعلّمته الشبكة سابقًا.
           </p>
@@ -362,7 +362,7 @@ export default function ModelPage() {
         </dl>
         <div className="prose reveal">
           <p>
-            <span className="num">{int(totalImages)}</span> صورة من مجموعتين على <L>Kaggle</L>:
+            <span className="num">{int(totalImages)}</span> صورة من مجموعتي بيانات على <L>Kaggle</L>:
           </p>
           <ul className={styles.sources}>
             {Object.entries(card.data.sources).map(([id, source]) => (
@@ -395,9 +395,9 @@ export default function ModelPage() {
                 </span>
               </div>
             </figcaption>
-            <ClassBars rows={classRows} title="عدد صور التدريب والتحقق والاختبار لكل صنف" />
+            <ClassBars rows={classRows} title="عدد صور التدريب والتحقّق والاختبار لكل صنف" />
             <p className="small">
-              بعض الأصناف صوره أكثر بثلاث مرات تقريبًا من غيره. لذلك استُخدمت أوزان للأصناف، حتى لا يميل
+              بعض الأصناف صورها أكثر بثلاث مرات تقريبًا من غيرها. لذلك استُخدمت أوزان للأصناف، حتى لا يميل
               النموذج إلى الأصناف الكبيرة.
             </p>
           </figure>
@@ -418,16 +418,16 @@ export default function ModelPage() {
               </li>
               <li>
                 <strong>تقسيم ثابت ومتوازن.</strong> <span className="num">{share(split.train)}/{share(split.val)}/{share(split.test)}</span>{' '}
-                للتدريب والتحقق والاختبار، بالنسبة نفسها داخل كل صنف، وببذرة عشوائية ثابتة.
+                للتدريب والتحقّق والاختبار، بالنسبة نفسها داخل كل صنف، وببذرة عشوائية ثابتة.
               </li>
               <li>
-                <strong>فحص التسريب.</strong> تأكدتُ أن لا صورة في التحقق أو الاختبار تكاد تطابق صورة في
+                <strong>فحص التسريب.</strong> تأكدتُ أن لا صورة في التحقّق أو الاختبار تكاد تطابق صورة في
                 التدريب.
               </li>
             </ol>
             <p className="note">
               استبعدتُ مجموعة بيانات ثالثة بالكامل، لأنها كانت نسخًا مدوَّرة ومائلة من الصور نفسها. لو
-              بقيت لتسرّبت نسخ الصورة الواحدة بين التدريب والاختبار، ولظهرت الدقة أعلى من حقيقتها.
+              بقيت لتسرّبت نسخ الصورة الواحدة بين التدريب والاختبار، ولظهرت الدقّة أعلى من حقيقتها.
             </p>
           </div>
         </div>
@@ -570,7 +570,7 @@ export default function ModelPage() {
               <figure key={`${key}-acc`}>
                 <figcaption className="label">النموذج {info.letter} · الدقّة لكل دورة</figcaption>
                 <LineChart
-                  title={`دقّة النموذج ${info.letter} على صور التدريب والتحقق خلال الدورات`}
+                  title={`دقّة النموذج ${info.letter} على صور التدريب والتحقّق خلال الدورات`}
                   series={[
                     { kind: 'train', values: history[key].map((r) => r.accuracy) },
                     { kind: 'val', values: history[key].map((r) => r.val_accuracy) },
@@ -586,7 +586,7 @@ export default function ModelPage() {
               <figure key={`${key}-loss`}>
                 <figcaption className="label">النموذج {info.letter} · الخطأ (loss) لكل دورة</figcaption>
                 <LineChart
-                  title={`خطأ النموذج ${info.letter} على صور التدريب والتحقق خلال الدورات`}
+                  title={`خطأ النموذج ${info.letter} على صور التدريب والتحقّق خلال الدورات`}
                   series={[
                     { kind: 'train', values: history[key].map((r) => r.loss) },
                     { kind: 'val', values: history[key].map((r) => r.val_loss) },
