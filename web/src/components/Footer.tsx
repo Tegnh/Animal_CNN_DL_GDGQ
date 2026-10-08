@@ -37,6 +37,11 @@ export function Footer() {
                   <bdi dir="ltr">X</bdi>
                 </a>
               </li>
+              <li>
+                <a href={site.author.github} target="_blank" rel="noopener noreferrer">
+                  <bdi dir="ltr">GitHub</bdi>
+                </a>
+              </li>
             </ul>
           </div>
         </div>

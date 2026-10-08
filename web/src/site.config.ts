@@ -11,6 +11,7 @@ export const site = {
     name: 'طارق الفضل',
     linkedin: 'https://www.linkedin.com/in/tarig-fdl-7a6599348',
     x: 'https://x.com/6ar_t',
+    github: 'https://github.com/Tegnh',
   },
   // Largest photo the demo accepts.
   maxUploadMb: 10,
