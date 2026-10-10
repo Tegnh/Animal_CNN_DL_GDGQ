@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { Bricolage_Grotesque, IBM_Plex_Mono, IBM_Plex_Sans_Arabic, Noto_Kufi_Arabic } from 'next/font/google';
 import { HydrationFlag } from '@/components/HydrationFlag';
 import { DEBUG_SCRIPT } from '@/lib/debug-script';
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <HydrationFlag />
         {children}
+        <Analytics />
       </body>
     </html>
   );
